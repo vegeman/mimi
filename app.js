@@ -40,8 +40,12 @@ let loop = false;
 				}
 			}, null, true);
 		}
+
 		if(request.url().includes('https://i01.appmifile.com/webfile/globalweb/stat/js/jquery.statData.min.js') && page.url().includes('https://buy.mi.com/tw/cart/index')){
 			page.click('#mi_checkout')
+		}
+
+		if(request.url().includes('https://i01.appmifile.com/webfile/globalweb/stat/js/jquery.statData.min.js') && page.url().includes('https://buy.mi.com/tw/buy/checkout')){
 			page.click('#checkoutFormBtn')
 		}
 	})
