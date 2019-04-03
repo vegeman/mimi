@@ -36,11 +36,13 @@ let loop = false;
 					loop = true
 					await msleep(200)
 					page.click('#sec_13 > div > div.slider-group > div > div:nth-child(1) > ul > li:nth-child(1) > div.info-box > div > div.right-info > a')
-					page.click('#mi_checkout')
-					page.click('#checkoutFormBtn')
 					console.log('click!')
 				}
 			}, null, true);
+		}
+		if(request.url().includes('https://i01.appmifile.com/webfile/globalweb/stat/js/jquery.statData.min.js') && page.url().includes('https://buy.mi.com/tw/cart/index')){
+			page.click('#mi_checkout')
+			page.click('#checkoutFormBtn')
 		}
 	})
 
