@@ -17,6 +17,7 @@ let loop = false;
 		headless: false,
 		// devtools: true
 	});
+
 	const page = await browser.newPage();
 	page.setViewport({
 		width : 1200,
@@ -31,15 +32,17 @@ let loop = false;
 			await page.goto('https://event.mi.com/tw/mff2019/sales/?utm_source=pc')
 		}
 		if(request.url() == 'https://syndication.twitter.com/settings' && !loop){
-			new CronJob('58 59 17 * * *', async function() {
+			// new CronJob('* 00 12 * * *', async function() {
 				while (page.url() == 'https://event.mi.com/tw/mff2019/sales/?utm_source=pc') {
-					loop = true
 					await msleep(200)
+					let element = await page.$('#sec_13 > div > div.slider-group > div > div:nth-child(1) > ul > li:nth-child(1) > div.info-box > div > div.right-info > a')
+					let text = await (await element.getProperty('textContent')).jsonValue();
+					loop = true
 					// page.click('#\\31 91_12_0 > div > div > a')
-					page.click('#sec_13 > div > div.slider-group > div > div:nth-child(1) > ul > li:nth-child(1) > div.info-box > div > div.right-info > a')
-					console.log('click!')
+					element.click()
+					console.log(text,'click!', new Date())
 				}
-			}, null, true);
+			// }, null, true);
 		}
 
 		if(request.url().includes('https://i01.appmifile.com/webfile/globalweb/stat/js/jquery.statData.min.js') && page.url().includes('https://buy.mi.com/tw/cart/index')){
