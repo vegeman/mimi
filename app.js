@@ -31,7 +31,7 @@ let loop = false;
 			await page.goto('https://event.mi.com/tw/mff2019/sales/?utm_source=pc')
 		}
 		if(request.url() == 'https://syndication.twitter.com/settings' && !loop){
-			new CronJob('50 20 15 * * *', async function() {
+			new CronJob('58 59 11 * * *', async function() {
 				while (page.url() == 'https://event.mi.com/tw/mff2019/sales/?utm_source=pc') {
 					loop = true
 					await msleep(200)
@@ -47,7 +47,7 @@ let loop = false;
 		}
 
 		if(request.url().includes('https://i01.appmifile.com/webfile/globalweb/stat/js/jquery.statData.min.js') && page.url().includes('https://buy.mi.com/tw/buy/checkout')){
-			await msleep(100)
+			await msleep(50)
 			page.click('#checkoutFormBtn')
 			console.log('checkout!')
 		}
